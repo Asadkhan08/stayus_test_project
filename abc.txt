@@ -1,5 +1,2 @@
 This is file 1 version
 This is file 2 version
-version:3 editing
-version:4 editing
-version:5 editing
