@@ -1,0 +1,8 @@
+# Dockerfile.db
+FROM mysql:8
+
+# Copy the .env file into the container
+COPY .env /etc/environment
+
+# Expose the MySQL port
+EXPOSE 3306

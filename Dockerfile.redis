@@ -1,0 +1,8 @@
+# redis_server/Dockerfile
+FROM redis:alpine
+
+# Set the working directory
+WORKDIR /data
+
+# Expose the Redis port
+EXPOSE 6379
