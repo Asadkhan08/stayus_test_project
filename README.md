@@ -1,56 +1,96 @@
-# System Admin / DevOps Engineer Test
+**STAYUS LARAVEL/PHP APPLICATION CONTAINERIZATION AND CI/CD WITH JENKINS**
 
-## IMPORTANT:
-- Deadline is usually +3 days (12NN +4GMT) from the moment the test was sent to you (Example: If sent on Monday, deadline is Thursday at 12NN +4GMT).
-- Ouput that needs to be sent to us:
-    - Working URL of the app that can be accessible online.
-    - Upload the project to your own repo and send us the link (optional but highly recommended as this will be discussed during the next phase of the interview).
-- Describe extra step that you took to make your output outstanding compare to other candidates (Example: setting up SSL, LB, etc...)
+**Table of Contents**
 
-### Test assignment A: Docker and Microservices
-**Objective:** To assess the candidate’s ability to work with Docker and microservices architecture.
+1.  **Introduction**
 
-**Task Description:**
-- This app includes App (PHP), MySQL and Redis services.
-- Containerize these services using Docker. Each service should have its own Dockerfile.
-- Write a docker-compose.yml file to orchestrate the services.
-- Ensure that the services can communicate with each other and are scalable.
-- Document the steps to build and run the containers, and any assumptions made in the process.
-- Send us the repo link (optional but highly recommended).
+-   Php/Laravel application has been dockerized with each service has its own Dockerfile
 
-**Evaluation Criteria:**
-- Understanding of Docker concepts and containerization.
-- Ability to set up a microservices architecture.
-- Quality of the Dockerfiles and docker-compose configurations.
-- Documentation and clarity of instructions.
+- Dockerfile "for app"
 
-### Test assignment B: Continuous Integration/Continuous Deployment (CI/CD)
-**Objective:** To evaluate the candidate's experience with CI/CD pipelines and version control systems.
+- Dockerfile.db "for mysql database"
 
-**Task Description:**
-- Using the output from Test A. 
-- Create a CI/CD pipeline using a tool like Jenkins, GitLab CI, or GitHub Actions (The pipeline should include stages for building, testing, and deploying the application).
-- Document the CI/CD setup and provide instructions on how the pipeline works, including how to trigger builds and deployments.
+- Dockerfile.redis "for Redis"
 
-**Evaluation Criteria:**
-- Proficiency in using version control (Git).
-- Ability to set up and configure CI/CD pipelines.
-- Understanding of automated testing and its integration into CI/CD.
-- Documentation quality and the ability to explain the CI/CD process.
+-   Application has been testing regularly  and in working condition. Docker Compose created to orchestrate whole dockerization process. Networking was created to make sure that all service can communicate with each other and separate volumes also created for data persistence.
+-   .env modified all database related parameters added, which can be secured more but due to **deactivation** of my **AWS account** I could not referenced to AWS parameters store and AWS secretes.
 
-### Test assignment C: Deployment to a Cloud or Server Environment
-**Objective:**  To assess the candidate’s ability to deploy applications to a cloud or server environment, integrating the work done in Test B.
+2.  **Project Structure**
 
-**Task Description:**
-- Take the CI/CD pipeline and the web application developed in Test B (If you are not familiar with CI/CD, you may use output from Test A instead).
-- Extend the CI/CD pipeline to include a deployment stage that automatically deploys the application to a cloud provider (AWS, Azure, GCP) or a server environment of your choice.
-- Ensure the deployment includes necessary environment configurations (like virtual networks, security groups, etc.) and is scalable.
-- Implement basic monitoring and logging for the application in the cloud/server environment.
-- Document the deployment process, including any scripts or configuration files used, and instructions on how to access the deployed application.
+-   Overview of Project Files and Directories
 
-**Evaluation Criteria:**
-- Ability to integrate deployment into an existing CI/CD pipeline.
-- Understanding of cloud services and server management (depending on the deployment target).
-- Implementation of security best practices in the deployment.
-- Setup of basic monitoring and logging for the application.
-- Quality of documentation and ease of accessing the deployed application.
+-   Laravel Application Files
+-   Docker Configuration Files
+-   Docker Compose File
+-   Jenkins Configuration Files
+
+4.  **Docker Setup**
+
+-   Dockerfile for Web Server (**laravelphp_image:v1**)
+-   Dockerfile for MySQL Database
+-   Dockerfile for Redis Server
+-   Docker Compose File (**docker-compose.yml**)
+-   Custom Apache Virtual Host Configuration (**000-default.conf**)
+-   MySQL Configuration File (**Dockerfile.db**)
+-   Redis Server Configuration (**Dockerfile.redis**)
+
+6.  **Configuration Changes**
+
+-   Changes to **000-default.conf** for Apache virtual host configuration
+-   Custom configurations in **conf.migration**
+-   Adjustments in **.env** for Database Credentials
+
+1.  **Deployment Constraints**
+
+-   **AWS Cloud**
+
+-   Deployment is not possible on AWS Cloud at the moment due to expired Free Tier and account deactivation.
+
+3.  **Jenkins Configuration**
+
+-   Jenkins Pipeline Stages
+
+-   Checkout
+-   Build Docker Image
+-   Testing
+-   Deploy
+
+5.  **Environment Variables**
+
+-   Docker Image (**DOCKER_IMAGE**)
+-   Docker Compose File (**DOCKER_COMPOSE_FILE**)
+-   MySQL and Database Configuration
+
+7.  **CI/CD Process**
+
+-   Checkout Stage:
+
+- Jenkins will look for specified repo if that exist and be cloned.
+
+-   Build Procedures:
+
+- Build stage will build docker image with tag specified.
+
+-   Deployment Steps:
+
+- Docker compose will deploy the whole and create network and volumes as well.
+
+1.  **Troubleshooting**
+
+-   Common Issues and Solutions : one issue arises when migration is issued for 2^nd^ time , it say users table already, existed which I manually delete and works again.
+-   Log Analysis: log analysis done and each and every service works normally.
+
+3.  **Post-Deployment Actions**
+
+-   Stop and Remove Containers: I usually do for my test environment.
+-   Additional Cleanup Steps
+
+5.  **Future Improvements**
+
+-   Potential Enhancements and Updates: can be done a lot to enhance security and SSL certifications and using parameter store and aws secrets to store sensitive data.  
+
+7.  **Conclusion**
+
+-   Comprehensive implementation and  Containerization and CI/CD pipeline using Jenkins.
+
+13. Github link:  https://github.com/Asadkhan08/stayus_test_project/tree/master
