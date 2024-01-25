@@ -8,6 +8,8 @@ services:
         - "8070:80"
     networks:
         - laravelphp_network
+    #command to automate migration process 
+    command: sh -c "php artisan migrate && exec tail -f /dev/null"
     depends_on:
       - mysql_database
       - redis 
