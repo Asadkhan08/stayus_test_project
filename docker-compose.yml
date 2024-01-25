@@ -8,8 +8,10 @@ services:
         - "8070:80"
     networks:
         - laravelphp_network
-    #command to automate migration process 
-    command: sh -c "php artisan migrate && exec tail -f /dev/null"
+    #command to automate migration process and i got an exception that user table already exist 
+    # so i havt to manually delete it first. 
+    command: sh -c "php artisan migrate && true && exec tail -f /dev/nu"
+    #command: sh -c "php artisan migrate || true"
     depends_on:
       - mysql_database
       - redis 
